@@ -7,7 +7,7 @@ class ChessBoardTest {
     void canAddPawn() {
         ChessBoard chessBoard = new ChessBoard();
         Pawn pawn = new Pawn(Color.WHITE);
-        chessBoard.addFigure("a1", pawn);
+        chessBoard.addPiece("a1", pawn);
 
         assertEquals(pawn, chessBoard.getPiece("a1"));
     }
@@ -15,8 +15,18 @@ class ChessBoardTest {
     void canAddKnight() {
         ChessBoard chessBoard = new ChessBoard();
         Knight knight = new Knight(Color.WHITE);
-        chessBoard.addFigure("a1", knight);
+        chessBoard.addPiece("a1", knight);
 
         assertEquals(knight, chessBoard.getPiece("a1"));
+    }
+    @Test
+    void canMoveC1KnightToD3() {
+        ChessBoard chessBoard = new ChessBoard();
+        Knight knight = new Knight(Color.WHITE);
+        chessBoard.addPiece("a1", knight);
+        assertEquals(chessBoard.getPiece("a1"), knight);
+        chessBoard.movePiece("a1", "d3");
+        assertNull(chessBoard.getPiece("a1"));
+        assertEquals(chessBoard.getPiece("d3"), knight);
     }
 }
