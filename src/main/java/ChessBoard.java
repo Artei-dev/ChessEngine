@@ -31,6 +31,10 @@ public class ChessBoard {
         Piece piece1 = getPiece(position1);
         Piece piece2 = getPiece(position2);
 
+        // crucial for proper pawn legalMoves assessment
+        boolean isAttacking = piece2 != null && piece2.color != piece1.color;
+        piece1.setIsAtacking(isAttacking);
+
         boolean sameColor = piece2 != null && piece2.color == piece1.color;
         if(piece1.getLegalMoves().contains(new Coordinates(position2)) && !sameColor) {
             deletePiece(position1);

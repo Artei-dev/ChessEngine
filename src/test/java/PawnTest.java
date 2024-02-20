@@ -40,6 +40,7 @@ class PawnTest extends PieceTest {
     @Test
     void canMoveOneDiagonallyRight() {
         Pawn pawn = new Pawn(Color.WHITE);
+        pawn.setIsAtacking(true);
         pawn.setPosition("b1");
         List<Coordinates> legalMoves = pawn.getLegalMoves();
         Coordinates destinedPosition = new Coordinates("c2");
@@ -59,6 +60,7 @@ class PawnTest extends PieceTest {
     @Test
     void canMoveOneDiagonallyLeft() {
         Pawn pawn = new Pawn(Color.WHITE);
+        pawn.setIsAtacking(true);
         pawn.setPosition("b1");
         List<Coordinates> legalMoves = pawn.getLegalMoves();
         Coordinates destinedPosition = new Coordinates("a2");

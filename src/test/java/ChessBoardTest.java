@@ -56,17 +56,50 @@ class ChessBoardTest {
 
     @Test
     void canMoveC1KnightToEnemyOccupiedSquare() {
-
         ChessBoard chessBoard = new ChessBoard();
         Piece knight = new Knight(Color.WHITE);
         Piece pawn = new Pawn(Color.BLACK);
         chessBoard.addPiece("c1", knight);
         chessBoard.addPiece("d3", pawn);
+
         assertEquals(chessBoard.getPiece("c1"), knight);
         assertEquals(chessBoard.getPiece("d3"), pawn);
+
         chessBoard.movePiece("c1", "d3");
+
         assertNull(chessBoard.getPiece("c1"));
         assertEquals(chessBoard.getPiece("d3"), knight);
         assertTrue(chessBoard.getWhiteCapturedPieces().contains(pawn));
+    }
+
+    @Test
+    void canCaptureEnemyPieceByPawn() {
+        ChessBoard chessBoard = new ChessBoard();
+        Piece pawn = new Pawn(Color.WHITE);
+        Piece knight = new Pawn(Color.BLACK);
+
+        chessBoard.addPiece("a2", pawn);
+        chessBoard.addPiece("b3", knight);
+        assertEquals(chessBoard.getPiece("a2"), pawn);
+        assertEquals(chessBoard.getPiece("b3"), knight);
+
+        chessBoard.movePiece("a2", "b3");
+
+        assertNull(chessBoard.getPiece("a2"));
+        assertEquals(chessBoard.getPiece("b3"), pawn);
+        assertTrue(chessBoard.getWhiteCapturedPieces().contains(knight));
+    }
+
+    @Test
+    void canNotMovePawnDiagonallyIfItsNotAttacking() {
+        ChessBoard chessBoard = new ChessBoard();
+        Piece pawn = new Pawn(Color.WHITE);
+
+        chessBoard.addPiece("a2", pawn);
+        assertEquals(chessBoard.getPiece("a2"), pawn);
+
+        chessBoard.movePiece("a2", "b3");
+        assertEquals(chessBoard.getPiece("a2"), pawn);
+        assertNull(chessBoard.getPiece("b3"));
     }
 }

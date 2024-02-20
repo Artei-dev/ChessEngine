@@ -20,15 +20,15 @@ public class Pawn extends Piece {
         // one square forward
         legalMoves.add(position.getOffset(0, directionFactor(-1)));
         // two squares forward
-        if(!hasMoved) {
+        if(!getHasMoved()) {
             legalMoves.add(position.getOffset(0, directionFactor(-2)));
         }
 
-        if(position.getX() != 0) {
+        if(position.getX() != 0 && getIsAtacking()) {
             legalMoves.add(position.getOffset(-1, directionFactor(-1)));
         }
 
-        if(position.getX() != 7) {
+        if(position.getX() != 7 && getIsAtacking()) {
             legalMoves.add(position.getOffset(1, directionFactor(-1)));
         }
 

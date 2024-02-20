@@ -3,7 +3,8 @@ import java.util.List;
 public abstract class Piece {
     Color color;
     Coordinates position;
-    boolean hasMoved = false;
+    private boolean hasMoved = false;
+    private boolean isAttacking = false;
 
     public Piece(Color color) {
         this.color = color;
@@ -11,7 +12,7 @@ public abstract class Piece {
     public void setPosition(String positionChessNotation) {
         this.position = new Coordinates(positionChessNotation);
     }
-
+    public abstract List<Coordinates> getLegalMoves();
     public void setHasMoved(boolean hasMoved) {
         this.hasMoved = hasMoved;
     }
@@ -20,5 +21,10 @@ public abstract class Piece {
         return this.hasMoved;
     }
 
-    public abstract List<Coordinates> getLegalMoves();
+    public void setIsAtacking(boolean atacking) {
+        isAttacking = atacking;
+    }
+    public boolean getIsAtacking() {
+        return isAttacking;
+    }
 }
