@@ -1,8 +1,8 @@
 import java.util.List;
 
 public abstract class Piece {
-    Color color;
-    Coordinates position;
+    protected Color color;
+    protected Coordinates position;
     private boolean hasMoved = false;
     private boolean isAttacking = false;
 
@@ -26,5 +26,13 @@ public abstract class Piece {
     }
     public boolean getIsAtacking() {
         return isAttacking;
+    }
+
+    public Coordinates getPosition() {
+        return position;
+    }
+
+    public void setPosition(Coordinates position) {
+        this.position = position;
     }
 }

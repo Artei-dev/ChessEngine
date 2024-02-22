@@ -19,9 +19,23 @@ public class Coordinates {
     private int fileToX(char file) {
         return file - 97;
     }
-    public Coordinates getOffset(int xOffset, int yOffset) {
-        return new Coordinates(x + xOffset, y + yOffset);
+    public Coordinates getWithOffset(int xOffset, int yOffset) {
+        return new Coordinates(x + xOffset, y - yOffset);
     }
+
+    public void setWithOffset(int xOffset, int yOffset) {
+        this.x += xOffset;
+        this.y -= yOffset;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     public int getX() {
         return x;
     }
