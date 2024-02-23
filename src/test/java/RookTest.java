@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -5,11 +6,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RookTest extends PieceTest {
+    static Piece[][] chessBoard;
+    @BeforeAll
+    static void setup() {
+        chessBoard = new ChessBoard().getBoard();
+    }
     @Test
     void rookCanMove7SquaresHorizontal() {
         Rook rook = new Rook(Color.WHITE);
         rook.setPosition("a1");
-        List<Coordinates> legalMoves = rook.getLegalMoves();
+        List<Coordinates> legalMoves = rook.getLegalMoves(chessBoard);
         Coordinates destinedPosition = new Coordinates("h1");
 
         assertTrue(isMoveLegal(legalMoves, destinedPosition));
@@ -18,7 +24,7 @@ class RookTest extends PieceTest {
     void rookCanMove1SquaresHorizontal() {
         Rook rook = new Rook(Color.WHITE);
         rook.setPosition("a1");
-        List<Coordinates> legalMoves = rook.getLegalMoves();
+        List<Coordinates> legalMoves = rook.getLegalMoves(chessBoard);
         Coordinates destinedPosition = new Coordinates("b1");
 
         assertTrue(isMoveLegal(legalMoves, destinedPosition));
@@ -27,7 +33,7 @@ class RookTest extends PieceTest {
     void rookCanMove4SquaresHorizontal() {
         Rook rook = new Rook(Color.WHITE);
         rook.setPosition("a1");
-        List<Coordinates> legalMoves = rook.getLegalMoves();
+        List<Coordinates> legalMoves = rook.getLegalMoves(chessBoard);
         Coordinates destinedPosition = new Coordinates("e1");
 
         assertTrue(isMoveLegal(legalMoves, destinedPosition));
@@ -36,7 +42,7 @@ class RookTest extends PieceTest {
     void rookCanMove7SquaresVertical() {
         Rook rook = new Rook(Color.WHITE);
         rook.setPosition("a1");
-        List<Coordinates> legalMoves = rook.getLegalMoves();
+        List<Coordinates> legalMoves = rook.getLegalMoves(chessBoard);
         Coordinates destinedPosition = new Coordinates("a8");
 
         assertTrue(isMoveLegal(legalMoves, destinedPosition));
@@ -46,7 +52,7 @@ class RookTest extends PieceTest {
     void rookCanMove1SquaresVertical() {
         Rook rook = new Rook(Color.WHITE);
         rook.setPosition("a1");
-        List<Coordinates> legalMoves = rook.getLegalMoves();
+        List<Coordinates> legalMoves = rook.getLegalMoves(chessBoard);
         Coordinates destinedPosition = new Coordinates("a2");
 
         assertTrue(isMoveLegal(legalMoves, destinedPosition));
@@ -55,7 +61,7 @@ class RookTest extends PieceTest {
     void rookCanMove4SquaresVertical() {
         Rook rook = new Rook(Color.WHITE);
         rook.setPosition("a1");
-        List<Coordinates> legalMoves = rook.getLegalMoves();
+        List<Coordinates> legalMoves = rook.getLegalMoves(chessBoard);
         Coordinates destinedPosition = new Coordinates("a5");
 
         assertTrue(isMoveLegal(legalMoves, destinedPosition));

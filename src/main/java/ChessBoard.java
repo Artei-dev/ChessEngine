@@ -14,6 +14,7 @@ public class ChessBoard {
         Coordinates coords = new Coordinates(position);
         return board[coords.getX()][coords.getY()];
     }
+
     public void deletePiece(String position) {
         Coordinates coords = new Coordinates(position);
         board[coords.getX()][coords.getY()] = null;
@@ -31,12 +32,8 @@ public class ChessBoard {
         Piece piece1 = getPiece(position1);
         Piece piece2 = getPiece(position2);
 
-        // crucial for proper pawn legalMoves assessment
-        boolean isAttacking = piece2 != null && piece2.color != piece1.color;
-        piece1.setIsAtacking(isAttacking);
-
         boolean sameColor = piece2 != null && piece2.color == piece1.color;
-        if(piece1.getLegalMoves().contains(new Coordinates(position2)) && !sameColor) {
+        if(piece1.getLegalMoves(board).contains(new Coordinates(position2)) && !sameColor) {
             deletePiece(position1);
             capturePiece(position2);
             addPiece(position2, piece1);
@@ -49,5 +46,9 @@ public class ChessBoard {
 
     public List<Piece> getBlackCapturedPieces() {
         return blackCapturedPieces;
+    }
+
+    public Piece[][] getBoard() {
+        return board;
     }
 }

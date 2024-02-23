@@ -14,7 +14,7 @@ public class Pawn extends Piece {
         return num;
     }
     @Override
-    public List<Coordinates> getLegalMoves() {
+    public List<Coordinates> getLegalMoves(Piece[][] chessBoard) {
         List<Coordinates> legalMoves = new ArrayList<>();
         // one square forward
         legalMoves.add(position.getWithOffset(0, directionFactor(1)));
@@ -23,11 +23,11 @@ public class Pawn extends Piece {
             legalMoves.add(position.getWithOffset(0, directionFactor(2)));
         }
 
-        if(position.getX() != 0 && getIsAtacking()) {
+        if(position.getX() != 0 && chessBoard[position.getX() - 1][position.getY() - directionFactor(1)] != null) {
             legalMoves.add(position.getWithOffset(-1, directionFactor(1)));
         }
 
-        if(position.getX() != 7 && getIsAtacking()) {
+        if(position.getX() != 7 && chessBoard[position.getX() + 1][position.getY() - directionFactor(1)] != null) {
             legalMoves.add(position.getWithOffset(1, directionFactor(1)));
         }
 

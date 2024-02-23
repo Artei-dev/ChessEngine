@@ -12,7 +12,7 @@ public abstract class Piece {
     public void setPosition(String positionChessNotation) {
         this.position = new Coordinates(positionChessNotation);
     }
-    public abstract List<Coordinates> getLegalMoves();
+    public abstract List<Coordinates> getLegalMoves(Piece[][] chessBoard);
     public void setHasMoved(boolean hasMoved) {
         this.hasMoved = hasMoved;
     }

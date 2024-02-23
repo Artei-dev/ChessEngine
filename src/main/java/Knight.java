@@ -7,7 +7,7 @@ public class Knight extends Piece {
     }
 
     @Override
-    public List<Coordinates> getLegalMoves() {
+    public List<Coordinates> getLegalMoves(Piece[][] chessBoard) {
         List<Coordinates> legalMoves = new ArrayList<>();
         // From white pieces perspective
         // North-East

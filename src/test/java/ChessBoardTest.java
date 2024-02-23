@@ -102,4 +102,23 @@ class ChessBoardTest {
         assertEquals(chessBoard.getPiece("a2"), pawn);
         assertNull(chessBoard.getPiece("b3"));
     }
+
+    @Test
+    void RookCanNotJumpOverPieces() {
+        ChessBoard chessBoard = new ChessBoard();
+        Piece rook = new Rook(Color.WHITE);
+        Piece pawn = new Pawn(Color.BLACK);
+
+        chessBoard.addPiece("a1", rook);
+        assertEquals(chessBoard.getPiece("a1"), rook);
+
+        chessBoard.addPiece("a3", pawn);
+        assertEquals(chessBoard.getPiece("a3"), pawn);
+
+        chessBoard.movePiece("a1", "a4");
+
+        assertEquals(chessBoard.getPiece("a1"), rook);
+        assertEquals(chessBoard.getPiece("a3"), pawn);
+        assertNull(chessBoard.getPiece("a4"));
+    }
 }
